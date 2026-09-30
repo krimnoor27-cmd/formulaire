@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Krim Automation — Automatisation IA avec Make et n8n</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#EEF2F5;--ink:#13233B;--muted:#4B5B70;--line:#C9D3DD;--accent:#0B7A63;--accent-ink:#fff;--field:#fff;--node:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1A2B;--ink:#E8EEF5;--muted:#9FB0C4;--line:#2A3B54;--accent:#3FD0A8;--accent-ink:#0F1A2B;--field:#16243A;--node:#16243A}}
+:root[data-theme="dark"]{--bg:#0F1A2B;--ink:#E8EEF5;--muted:#9FB0C4;--line:#2A3B54;--accent:#3FD0A8;--accent-ink:#0F1A2B;--field:#16243A;--node:#16243A}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "DM Sans",system-ui,sans-serif}
+main{max-width:980px;margin:0 auto;padding:0 24px 72px}
+h1,h2{font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;line-height:1.05;margin:0}
+.brand{padding:28px 0;font:700 18px "Bricolage Grotesque",sans-serif;display:flex;align-items:center;gap:10px}
+.brand i{width:12px;height:12px;border-radius:50%;background:var(--accent);display:inline-block}
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding:24px 0 56px}
+h1{font-size:clamp(38px,6vw,64px);font-weight:800;letter-spacing:-.02em}
+.hero p{color:var(--muted);max-width:46ch;margin:20px 0 28px}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);font:500 17px "DM Sans",sans-serif;border:0;border-radius:10px;padding:14px 26px;cursor:pointer;text-decoration:none}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.flow{width:100%;height:auto}
+.flow .n{fill:var(--node);stroke:var(--ink);stroke-width:1.5}
+.flow .l{stroke:var(--accent);stroke-width:2;fill:none;stroke-dasharray:6 6;animation:dash 1.6s linear infinite}
+.flow text{fill:var(--ink);font:500 13px "DM Sans",sans-serif}
+@keyframes dash{to{stroke-dashoffset:-24}}
+@media (prefers-reduced-motion:reduce){.flow .l{animation:none}}
+.services{border-top:1px solid var(--line);padding:48px 0}
+.services h2,.contact h2{font-size:clamp(28px,4vw,40px);margin-bottom:24px}
+.services ul{list-style:none;margin:0;padding:0}
+.services li{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:18px 0;border-bottom:1px solid var(--line)}
+.services strong{font:700 20px "Bricolage Grotesque",sans-serif}
+.services span{color:var(--muted)}
+.contact{border-top:1px solid var(--line);padding-top:48px;max-width:620px}
+label{display:block;font-weight:500;margin:18px 0 6px}
+input,select,textarea{width:100%;font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+textarea{min-height:140px;resize:vertical}
+.contact .btn{margin-top:24px}
+#msg{margin-top:16px;color:var(--muted)}
+#msg.err{color:#C0392B}
+@media (max-width:760px){.hero{grid-template-columns:1fr}.services li{grid-template-columns:1fr;gap:4px}}
+</style>
+</head>
+<body>
+<main>
+  <div class="brand"><i></i>Krim Automation</div>
+
+  <section class="hero">
+    <div>
+      <h1>Vos tâches répétitives, automatisées.</h1>
+      <p>Je conçois des automatisations et des agents IA avec Make et n8n pour que votre équipe passe son temps sur ce qui compte vraiment.</p>
+      <a class="btn" href="#contact">Parler de mon projet</a>
+    </div>
+    <svg class="flow" viewBox="0 0 400 300" role="img" aria-label="Schéma d'un flux d'automatisation : formulaire, IA, CRM, email">
+      <path class="l" d="M110 60 C170 60 150 150 210 150"/>
+      <path class="l" d="M110 240 C170 240 150 150 210 150"/>
+      <path class="l" d="M290 150 L320 150"/>
+      <rect class="n" x="20" y="36" width="90" height="48" rx="10"/><text x="65" y="65" text-anchor="middle">Formulaire</text>
+      <rect class="n" x="20" y="216" width="90" height="48" rx="10"/><text x="65" y="245" text-anchor="middle">Email</text>
+      <rect class="n" x="210" y="120" width="80" height="60" rx="12"/><text x="250" y="155" text-anchor="middle">IA</text>
+      <rect class="n" x="320" y="126" width="66" height="48" rx="10"/><text x="353" y="155" text-anchor="middle">CRM</text>
+    </svg>
+  </section>
+
+  <section class="services">
+    <h2>Ce que je fais</h2>
+    <ul>
+      <li><strong>Scénarios Make</strong><span>Relier vos outils (CRM, factures, messagerie) sans code et sans ressaisie.</span></li>
+      <li><strong>Workflows n8n</strong><span>Automatisations plus poussées, hébergées chez vous si vous le souhaitez.</span></li>
+      <li><strong>Agents IA</strong><span>Tri des emails, réponses aux demandes clients, résumés et rapports automatiques.</span></li>
+    </ul>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Décrivez-moi votre besoin</h2>
+    <form id="f" novalidate>
+      <label for="nom">Nom</label>
+      <input id="nom" name="nom" autocomplete="name" required>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" autocomplete="email" required>
+      <label for="type">Type de projet</label>
+      <select id="type" name="type">
+        <option>Automatisation avec Make</option>
+        <option>Workflow avec n8n</option>
+        <option>Agent IA</option>
+        <option>Autre</option>
+      </select>
+      <label for="message">Votre besoin</label>
+      <textarea id="message" name="message" required placeholder="Quelle tâche voulez-vous automatiser ?"></textarea>
+      <button class="btn" type="submit">Envoyer ma demande</button>
+      <p id="msg" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+<script>
+/* Collez ici l'URL du webhook Make (Webhooks > Custom webhook) */
+var WEBHOOK="COLLEZ_ICI_L_URL_DU_WEBHOOK_MAKE";
+document.getElementById("f").addEventListener("submit",function(e){
+  e.preventDefault();
+  var f=e.target,m=document.getElementById("msg"),b=f.querySelector("button"),
+      nom=f.nom.value.trim(),em=f.email.value.trim(),ms=f.message.value.trim();
+  m.className="";
+  if(!nom||!/^\S+@\S+\.\S+$/.test(em)||!ms){
+    m.className="err";
+    m.textContent="Renseignez votre nom, un email valide et votre besoin.";
+    return;
+  }
+  b.disabled=true;
+  m.textContent="Envoi en cours...";
+  fetch(WEBHOOK,{method:"POST",mode:"no-cors",body:new FormData(f)})
+    .then(function(){
+      f.reset();
+      m.textContent="Merci, votre demande est bien reçue. Je vous réponds rapidement.";
+    })
+    .catch(function(){
+      m.className="err";
+      m.textContent="L'envoi a échoué. Merci de réessayer dans un instant.";
+    })
+    .then(function(){b.disabled=false;});
+});
+</script>
+</body>
+</html>
